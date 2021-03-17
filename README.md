@@ -159,5 +159,5 @@ Using `.mkv` will get access to `48kHz Opus audio` if it is available while `.mp
 
 ### How do I... ?
 Read the manuals
-1. https://github.com/ytdl-org/youtube-dl/blob/master/README.md (currently down due to dmca, refer to https://github.com/github/dmca/tree/416da574ec0df3388f652e44f7fe71b1e3a4701f)
+1. https://github.com/ytdl-org/youtube-dl/blob/master/README.md
 2. https://ffmpeg.org/documentation.html
