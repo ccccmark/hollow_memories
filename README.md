@@ -26,7 +26,7 @@ If you were to store `youtube-dl.exe` in `C:\Program Files\youtube-dl` you would
 2. Use your brain to find the download
 3. Extract the downloaded zip file
 4. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
-5. Do steps 4 and 5 from the the `Get youtube-dl` section but this time using the folder for where `ffmpeg.exe` is.
+5. Do steps 4 and 5 from the `Get youtube-dl` section but this time using the folder for where `ffmpeg.exe` is.
 
 Example:
 If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
@@ -38,7 +38,7 @@ This is optional, it will allow you to create `.mp4` files with thumbnails from 
 2. Download latest version
 3. Extract the zip
 4. Inside the extracted files, copy the folder `AtomicParley-win32-0.9.0` to a permanent location. You may want to rename the folder to `AtomicParsley`.
-5.  Do steps 4 and 5 from the the `Get youtube-dl` section but this time using the folder for where `AtomicParsley.exe` is.
+5.  Do steps 4 and 5 from the `Get youtube-dl` section but this time using the folder for where `AtomicParsley.exe` is.
 
 Example: 
 If you were to store the folder at `C:\Program Files\AtomicParsley` then you would run `setx /M PATH "%PATH%;C:\Program Files\AtomicParsley`. `AtomicParsley.exe` should be located in `C:\Program Files\AtomicParsley`.
