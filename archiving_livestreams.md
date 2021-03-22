@@ -1,153 +1,109 @@
 # Archiving Livestreams
-
-This guide covers how to record livestreams as they are occurring. This is useful for streams that will not be archived later.
+This guide covers on how to record ongoing or scheduled livestreams. This is useful for streams that will not be archived later on.
 
 ## Table of Contents
+- [Prerequisites](#prerequisites)
+   - [Installing Python and FFMpeg on Windows](#installing-python-and-ffmpeg-on-windows)
+   - [Installing ytarchive on Windows](#installing-ytarchive-on-windows)
+- [Using ytarchive](#using-ytarchive)
+   - [Saving a normal stream](#saving-a-normal-stream)
+   - [Saving a members only stream](#saving-a-members-only-stream)
+   - [Advanced usage](#advanced-usage)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
 
-1. [Recording Regular Streams](#recording-regular-streams)
-    * [Prerequisites](#prerequisites)
-    * [Instructions](#instructions)
-    * [Advanced Scenarios](#advanced-scenarios)
-2. [Recording Members Only Streams](#recording-members-only-streams)
-3. [Post Processing](#post-processing)
-4. [FAQ](#faq)
+## Prerequisites
+### Installing Python and FFMpeg on Windows
+Follow the guide shown in the [README](README.md#prerequisites)
 
-## Recording Regular Streams
-These instructions are for recording publicly available streams using [Streamlink](https://streamlink.github.io/). Youtube-dl can record livestreams as well but Streamlink offers a better user experience for this scenario (it is common for people to corrupt their livestream recordings with youtube-dl). The following steps will record a stream while playing the stream through VLC. Instructions for using alternative media players are provided under [Advanced Scenarios](#advanced-scenarios).
-
-tl;dr
+### Installing ytarchive on Windows
+1. Download ytarchive from https://github.com/Kethsar/ytarchive/releases/latest
+   - If you get a virus warning on your anti-virus, it's a false-positive. [Read here](https://github.com/Kethsar/ytarchive/issues/9).
+   - You may use the [`.py` version instead](#how-do-i-use-the-py-file-version-of-ytarchive-instead)
+2. Move `ytarchive.exe` to a permanent location (eg. C:\Program Files\ytarchive)
+3. Open Command Prompt in elevated mode
+> Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
+4. Modify the following command by replacing `C:\Path\To\ytarchive` with the folder path where you are storing `ytarchive.exe` and run the command in Command Prompt by pasting the command in(CTRL+V) and pressing enter.
 ```
-streamlink --retry-streams 10 --player mpv -r stream.mp4 <stream_url> best
+setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 ```
+>Example: If you were to store `ytarchive.exe` in `C:\Program Files\ytarchive` you would run the command `setx /M PATH "%PATH%;C:\Program Files\youtube-dl"`
+5. Verify that it has installed correctly by opening a new Command Prompt without elevated mode, typing `ytarchive -h` and pressing enter.
 
-### Prerequisites
-1. Install [Streamlink](https://streamlink.github.io/install.html)
-2. Install [VLC](https://www.videolan.org/vlc/) or another video player of your choice.
-3. Optionally install [youtube-dl](https://youtube-dl.org/). A simple install and usage guide is provided [here](README.md). This will be used to download the stream's description and thumbnail for a more complete archive.
-
-### Instructions
-The example will save the high quality stream available as `stream.mp4` in the folder `C:\Users\anon\stream_folder`.
-
-1. Create a folder for where you want to save the stream to. You may want to user a temporary folder and then manually move it to the final destination afterwards.
-2. Open the command prompt, you will run commands here by copying and pasting commands and pressing enter.
-    * Open the start menu and search for `command prompt`.
-3. Move to the folder where you want to save the stream to.
-    * Command: ```cd "<path_to_folder_from_step_1>"```
-    * Example: ```cd "C:\Users\anon\stream_folder"```
-4. Start recording the stream
-   * Command: ```streamlink -r <name_to_save_stream_as>.mp4 <stream_url> best```
-   * Example: ```streamlink -r stream.mp4 https://www.youtube.com/watch?v=RPdUErEiRbk best```
-
-### Advanced Scenarios
-
-#### Save the stream in 720p.
-This is useful when you do not have enough bandwidth for 1080p streams.
-
+## Using ytarchive
+### Saving a normal stream
+* To make your life easier, you can use this [script](scripts/ytarchive.ps1) and copy it to the directory you wish to save the stream to, then open the file.
+1. Open Command Prompt.
+2. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
 ```
-streamlink -r <name_to_save_stream_as>.mp4 <stream_url> 720p
+cd "C:\Path\To\stream"
 ```
+>Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
+3. Type `ytarchive` into Command Prompt and pressing enter.
+4. Paste the URL of the stream you wish to save. (eg. `https://www.youtube.com/watch?v=tYnk9EnrnOE`)
+5. If you are saving a stream that has been scheduled but not yet started, it will ask you if you will wait until the start of the livestream. Type `poll` then `15` to check if the stream has started every 15 seconds.
+6. Enter the quality option you desire from the list shown.
+> Generally when archiving streams for public sharing it is advised to use the `best` quality. You may choose to use 720p or lower if you have bad internet or low diskspace.
+7. Once the stream ends, `ytarchive` will automatically mux the stream into an `.mp4` video.
 
-#### Automatically start recording when the stream goes live.
-When the waiting room is available, you can use this command to have streamlink try start recording every 10 seconds. This is very useful if you know you will not be present for the start of the stream.
+### Saving a members only stream
+Make sure you have membership of the channel and are logged into YouTube or it will not work.
+1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
+2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
+> Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
+2. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
+```
+cd "C:\Path\To\stream"
+```
+>Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
+5. Modify the following command by replacing `C:\Path\To\youtube.com_cookies.txt` with the folder path where you are storing the cookie file.
+```
+ytarchive -c youtube.com_cookies.txt
+```
+>Example: If you were to store `cookie` in `C:\Users\anon\Desktop\youtube.com_cookies.txt` you would run the command `ytarchive -c youtube.com_cookies.txt`
 
-```
-streamlink --retry-streams 10 -r <name_to_save_stream_as>.mp4 <stream_url> best
-```
+>You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
 
-#### Use MPV or MPC instead of VLC for video playback.
-You may have to provide the full file path to the video player executable instead of just using the short name. To use the short name instead of the full file path, you have to add the file path of the video player to your `PATH`. Refer to the `setx` command [here](README.md#windows-setup)
-
-mpv:
+### Advanced usage
+If you wish to learn the CLI commands yourself, use the `ytarchive -h` command or refer to this [README](https://github.com/Kethsar/ytarchive/blob/master/README.md).
+* Download the stream to the current directory with the best quality
 ```
-streamlink --player mpv -r <name_to_save_stream_as>.mp4 <stream_url> best
-```
-
-mpc:
-```
-streamlink --player mpc-hc64 -r <name_to_save_stream_as>.mp4 <stream_url> best
-```
-
-#### Only record the stream, do not play the stream.
-Changing `-r` to `-o` in the command makes it only save to a file. This is useful to combine with `--retry-streams 10` to record a stream that has been scheduled when you will not be present.
-
-```
-streamlink -o <name_to_save_stream_as>.mp4 <stream_url> best
+ytarchive https://www.youtube.com/watch?v=WGjAGh1zVQg best
 ```
 
+* You can replace `best` with different quality options:
+
+   `audio_only, 144p, 240p, 360p, 480p, 720p, 720p60, 1080p, 1080p60, best`
+
+* The `-add-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
+
+* The `-o` flag is used to download the video to a different directory or to name the download file. The available placeholders are
 ```
-streamlink --retry-streams 10 -o <name_to_save_stream_as>.mp4 <stream_url> best
+	id (string): Video identifier
+	title (string): Video title
+	channel_id (string): ID of the channel
+	channel (string): Full name of the channel the livestream is on
+	upload_date (string): Technically stream date (YYYYMMDD)
 ```
+> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
 
-## Recording Members Only Streams
-### Recommended: streamlink-auth.ps1 script
-This script will extract the right value out of a `cookies.txt` file and run `streamlink` with the arguments you provide it.
+> Using the filename `[%(channel)s][%(upload_date)s] %(title)s (%(id)s)` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
-0. Get a `cookies.txt` file. Refer to steps 1 to 4 [here](README.md#download-a-members-only-video)
-1. Copy [streamlink-auth.ps1](scripts/streamlink-auth.ps1) and save it as `streamlink-auth.ps1` where you installed `streamlink`.
-   * Default installation location is `C:\Program Files (x86)\Streamlink\bin`
-2. Open Powershell.
-   * Open the start menu (Windows key), type in powershell, open Windows Powershell
-3. Run the command `streamlink-auth COOKIES_TXT_FILE_PATH STREAMLINK_ARGUMENTS`
-   * Example: You want to watch https://www.youtube.com/watch?v=-hLmfV-wQKo and your `cookies.txt` file is located at `C:\Users\anon\Documents\cookies.txt`
-   * `streamlink-auth C:\Users\anon\Documents\cookies.txt https://www.youtube.com/watch?v=-hLmfV-wQKo best`
-   * If you are running into issues with `streamlink-auth` not found, then copy the script somewhere else, and navigate to that folder in Powershell using the command `cd <Path to folder containing script>` and try again.
-   
-### Directly with Streamlink
-The above script is simply extracting the `__Secure-3PSID` cookie for .youtube.com and setting the `--http-cookie` command line arguement as `--http-cookie __Secure-3PSID=<cookie value>`. The line in the `cookies.txt` you are looking for looks like `#HttpOnly_.youtube.com	TRUE	/	TRUE	1667272763	__Secure-3PSID	<Some random letters and numbers, this is the cookie value>`. If you use the same `cookies.txt` with `youtube-dl` then the line might not start with `#HttpOnly_`.
+* The `-r <integer>` flag is used to retry re-check if the stream is up every <integer> seconds. This is useful for waiting for scheduled livestreams.
 
-## Post Processing
-The previous steps should have given you a working video file but it can be improved with a few simple steps. The following steps will convert the file to a real `.mp4` file [[note](#real-mp4)], add a fancy thumbnail, save the video description with the recording, and give the video a nice name. 
+* The `--threads <integer>` flag is used to set the number of threads to use for downloading audio and video fragments. The total number of threads running will be `<integer>` * 2 + 3. Main thread, a thread for each audio and video download, and `<integer>` number of fragment downloaders for both audio and video. Due to Python limitations the ytarchive will never use more than a single CPU core. Setting this above 5 is not recommended.
 
-Before and After:
+* The `-t` flag is used to embed the original stream thumbnail in the downloaded video file.
 
-![Post Processing Difference](assets/post_process_difference.jpg)
+* The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
-Do the following in PowerShell instead of command prompt. You can convert a command prompt into PowerShell by using the command `powershell`.
-You will have to open a new command prompt for PowerShell while your previous command prompt is busy running Streamlink.
-
-1. Generate a nice filename to be used later. Example generated filename: `[Botan Ch.獅白ぼたん][20200830] 5期生より (fCqDv94ZeuA)`. You will want to do this step while the stream is still live.
-```
-$filename = youtube-dl --write-description --skip-download -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s)" --get-filename <stream_url>
-``` 
-2. Download the livestream's description and thumbnail as `stream.description` and `stream.jpg` respectively. You will want to do this step while the stream is still live, once the livestream ends and the archive is deleted, you will not have access to the description nor the thumbnail anymore.
-```
-youtube-dl --write-thumbnail --write-description --skip-download -o stream <stream_url>
-```
-3. Store the livestream's description into variable `$description`.
-```
-$description = [IO.File]::ReadAllText(".\stream.description")
-```
-4. Convert to `.mp4`, add thumbnaill, add the description to the video's comment and save the new video with a formatted name.
-```
-ffmpeg -i .\stream.mp4 -i .\stream.jpg -map 1 -map 0 -c copy -disposition:0 attached_pic -metadata comment=$description $($filename + ".mp4")
-```
-
-[Script for the above](scripts/postprocess.ps1).
-
-## FAQ
-### Real .mp4?
-The original recording from streamlink is saved with a `.mp4` file extension but it is actually a `MPEG-TS` format file. Most video players will still be able to play the recording since they understands the format and do not rely on the file extension. 
-
-The fake `.mp4` extension is convenient for most people because their computers would be set up to use a video player to open files with the extension `.mp4`. Converting it to a real `.mp4` file will reduce the file size without affecting quality.
-
-### My thumbnail was downloaded as a .webp file and that file format is not supported for thumbnails, how do I convert it?
-Convert from `.webp` to `.jpg`. ffmpeg is wonderful.
-
-```
-ffmpeg -i stream.webp stream.jpg
-```
-
-### I really really want to use youtube-dl, how do I record and playback at the same time?
-```
-youtube-dl -o - <stream_url>  best | tee stream.mp4 | mpv -
-```
-You can get `tee` by installing [git](https://git-scm.com/downloads). This will not work in PowerShell.
-
-### Why not use AtomicParsley to add the thumbnail?
-AtomicParsley only records the first 255 characters of the video's comment. If you want to use it, do it before adding the comment.
-
-### How do I... ?
-Read the manuals
-1. https://github.com/ytdl-org/youtube-dl/blob/master/README.md (currently down due to dmca, refer to https://github.com/github/dmca/tree/416da574ec0df3388f652e44f7fe71b1e3a4701f)
-2. https://ffmpeg.org/documentation.html
-3. https://streamlink.github.io/cli.html
+## Troubleshooting/FAQ
+### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+- Try reopening a new Command Prompt in administrator mode and verify if they work.
+- Make sure you followed the instructions and installed everything correctly.
+- Try adding `.exe` behind the command (eg. `ytarchive.exe` instead of `ytarchive`).
+### When I run `ytarchive` in Command Prompt, I get an infinite loop!
+- Try ytarchive.exe instead of ytarchive.
+### How do I use the `.py` file version of ytarchive instead?
+- The `.py` file must be in the directory you want to save the stream to
+- Follow the normal instructions but instead of using the `ytarchive` command use `python ytarchive.py` instead.
+- The `ytarchive.ps1` script will not work with the `.py` file version.

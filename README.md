@@ -3,172 +3,148 @@ This tutorial covers setting up and using `youtube-dl` to download videos, playl
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
-  - [Getting youtube-dl](#getting-youtube-dl)
-  - [Getting FFmpeg](#getting-ffmpeg)
-  - [Getting AtomicParsley](#getting-atomicparsley)
-- [Using youtube-dl](#using-youtube-dl)
-  - [Downloading a single video](#downloading-a-single-video)
-  - [Downloading a playlist](#downloading-a-playlist)
-  - [Downloading all playlists from a channel](#downloading-all-playlists-from-a-channel)
-  - [Downloading a members only video](#downloading-a-members-only-video)
-  - [Archiving a channel](#archiving-a-channel)
-- [Downloading a livestream as it is occurring](#downloading-a-livestream-as-it-is-occurring)
-- [FAQ](#faq)
+  - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
+  - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
+  - [Installing yt-dlp](#installing-yt-dlp)
+- [Using yt-dlp](#using-yt-dlp)
+  - [Downloading videos](#downloading-videos)
+  - [Downloading playlists](#downloading-playlists)
+  - [Downloading members only videos](#downloading-members-only-videos)
+  - [Setting-up a default config](#setting-up-a-default-config)
+- [Downloading entire channels](#downloading-entire-channels)
+- [Downloading livestreams](#downloading-livestreams)
+- [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
-### Getting youtube-dl
-1. Go to https://yt-dl.org/downloads/latest/youtube-dl.exe to download youtube-dl.
-2. From your `Downloads` folder, move `youtube-dl.exe` to a permanent location.
-3. Open cmd with Administrator permissions
-   * right-click ⊞ windows key and click `Command Prompt (Admin)`
-4. Modify the following command by replacing `<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>` with the folder path where you are storing `youtube-dl.exe` and then run the command in the cmd window by pasting the command into the cmd window and pressing enter
->Example:
-If you were to store `youtube-dl.exe` in `C:\Program Files\youtube-dl` you would run the command `setx /M PATH "%PATH%;C:\Program Files\youtube-dl"`
-   
+### Installing chocolatey on Windows
+1. Open PowerShell in elevated mode
+    - Open the start menu by pressing the ⊞ windows key, type cmd, right click `Windows PowerShell` and clicking `Run as administrator`.
+2. Run the following command in PowerShell by pasting it in(CTRL+V) and pressing enter.
 ```
-setx /M PATH "%PATH%;<REPLACE THIS WITH YOUR youtube-dl DIRECTORY>"
+Set-ExecutionPolicy Bypass -Scope Process -Force; `
+  iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
-5. Close the cmd window
-6. Open a new cmd window (not administrator mode)
-7. Run the command `youtube-dl --version`, you should get an output like `2021.03.14` if you set everything up correctly. 
+3. Verify chocolatey has instealled by running the command then `choco -?`.
 
-### Getting FFmpeg
-1. Go to https://www.gyan.dev/ffmpeg/builds/ffmpeg-git-full.7z to download FFmpeg.
-2. Extract the downloaded zip file (You might need to install https://www.7-zip.org/ to extract the file).
-3. Copy the folder inside the folder that was extracted to a permanent location. You may want to rename the long folder name to `ffmpeg`. `ffmpeg.exe` is inside the `bin` folder inside the folder you copied.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `ffmpeg.exe` is.
->Example:
-If you were to store the folder at `C:\Program Files\ffmpeg` then you would run `setx /M PATH "%PATH%;C:\Program Files\ffmpeg\bin`. `ffmpeg.exe` should be located in `C:\Program Files\ffmpeg\bin`.
-5. Run the command `ffmpeg -version`, you should get an output like `ffmpeg version 2.2.2` along with other text if you set everything up correctly.
-
-### Getting AtomicParsley
-> This is optional, it will allow you to create `.mp4` files with thumbnails from the youtube video. Currently this guide does not make use of AtomicParsley.
-1. Go to https://sourceforge.net/projects/atomicparsley/files/latest/download to download AtomicParsley.
-3. Extract the the downloaded zip file
-4. Inside the extracted files, copy the folder `AtomicParley-win32-x.x.x` to a permanent location. You may want to rename the folder to `AtomicParsley`.
-4. Repeat steps 4 and 5 from [`Get youtube-dl`](#get-youtube-dl) but this time using the folder for where `AtomicParsley.exe` is.
->Example: 
-If you were to store the folder at `C:\Program Files\AtomicParsley` then you would run `setx /M PATH "%PATH%;C:\Program Files\AtomicParsley`. `AtomicParsley.exe` should be located in `C:\Program Files\AtomicParsley`.
-6. You should now be able to run the command `AtomicParsley`.
-
-## Using youtube-dl
->The following examples download as `.mkv` files otherwise stated. See the [FAQ section](#faq) below on the difference between `.mkv` and `.mp4`. It is recommended to use the `.mp4` version of the command for most streams and `.mkv` for content with video resolution higher than `1080p` or music videos.
-### Downloading a single video
-1. Open cmd.
-2. Run one of the following `youtube-dl` commands after replacing the youtube link with a link to the video you want to download.
-
-* Download it to the current directory (The path shown in cmd on the left of where you are typing)
+### Installing Python and FFmpeg using chocolatey
+1. Using the same PowerShell window from before, run the following command by pasting it in(CTRL+V) and pressing enter.
 ```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s -i
+choco install -y python ffmpeg
+```
+2. Verify both programs have been installed by typing `python --version` and `ffmpeg -version`
+
+### Installing yt-dlp
+1. Open Command Prompt in elevated mode
+    - Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
+2. Run the following command by pasting it in(CTRL+V) and pressing enter.
+```
+python -m pip install --upgrade yt-dlp
+```
+3. Verify that yt-dlp has been installed by typing `yt-dlp --version`
+
+## Using yt-dlp
+If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or refer to this [README](https://github.com/yt-dlp/yt-dlp/blob/master/README.md).
+### Downloading videos
+* You can use [this script to download single videos](scripts/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
+* You can use [this script to download playlists](scripts/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
+
+* This is the basic command to download a video to the current directory
+```
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 ```
 
-* Download to a specific directory and use the video title as the file name. Replace the directory path `C:\Users\anon\Downloads\` with the path to the directory you want to download it to.
+* The `-i` flag simply ignores errors and continues instead of throwing an error (eg. if the video is privated or deleted).
+
+* The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/ytdl-org/youtube-dl#output-template).
+> You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
+
+> Using the filename `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
+
+* The `-add-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
+
+* The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
+
+* The `--embed-thumbnail` flag is used to embed the original thumbnail of the video into the downloaded video file. `--embed-subs` is used to embed subtitles from YouTube into the video file, this is useful for music videos.
+
+* `--merge-output-format mp4` is used to output an `.mp4` file instead of an `.mkv` file.
+
+* The `-r` flag is used to throttle the download rate so it does not use up all your bandwidth. 100K = 100KB/s, 1M = 1MB/s (eg. -r 10M to limit download rate to 10MB/s)
+>Warning! Do not confuse MB/s with Mbps! Read about it [here](https://www.backblaze.com/blog/megabits-vs-megabytes).
+
+* The `-n` flag is used to state the amount of threads to use when downloading fragments. Higher count will result in faster downloads but do not set it above 16 as it does nothing much past that point.
+
+* The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
+> It is recommended to use `-S "proto,codec:av01:m4a"` as it fixes issues with broken video downloading and playback, [see here](#the-video-file-is-corrupted)
+
+* The flags can be combined to form a single command. Example:
 ```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s -i -o "C:\Users\anon\Downloads\%(title)s.%(ext)s"
+yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -S "proto,codec:av01:m4a" -r 10M -o "[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
-* Download a video to a specific directory along with metadata, video description embedded in the comment property as well as in a file, and the youtube thumbnail.
+### Downloading playlists
+* Download a playlist to the current directory
 ```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s -i --add-metadata --write-thumbnail --write-description -o "C:\Users\anon\Downloads\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
-```
-
-* Same as the above but as an `.mp4` file.
-```
-youtube-dl https://www.youtube.com/watch?v=pFgUluV_00s -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 --add-metadata --write-thumbnail --write-description -o "C:\Users\anon\Downloads\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb
 ```
 
-### Downloading a playlist
-1. Open cmd.
-2. Run one of the following `youtube-dl` commands after replacing the youtube playlist link with a link to the youtube playlist you want to download.
+* You can use the `%(playlist_index)s` placeholder in `-o` to have the video names ordered according to the playlist order.
 
-* Download a playlist to a specific directory with the files in order of how they appear in the playlist. Replace `C:\Users\anon\Desktop\comet originals` with the path to the directory of your choice.
-```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd -i -o "C:\Users\anon\Desktop\comet originals\%(playlist_index)s - %(title)s.%(ext)s"
-```
-* Download a playlist to a folder named after the playlist with the files in order of how they appear in the playlist. Replace `C:\Users\anon\Desktop` with the path to the directory of your choice. A subfolder with the same name as the playlist will be created with the downloaded videos in it.
-```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd -i -o "C:\Users\anon\Desktop\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
-```
+* You can use the `%(playlist)s` placeholder to create a folder with the same name as the playlist.
 
-* Same as the scenario above but saves information about the videos that have already been downloaded so you can later run the same command again to update your downloaded playlist without redownloading everything. 
-> There are now two paths you must edit, one for the path to where the archive file is and one for where the videos will be downloaded. The folder of where the archive file will be located must exist prior to running this command, so create the folder if it doesn't already exist.
+* The `--download-archive` flag saves a list of downloaded videos so that if you decide to update the downloaded playlist in the future it will not redownload the videos listed.
+
+* To download all playlists from a channel, simply copy the channel's URL and add `/playlists` at the end. Unfortunately if used with `--download-archive`, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video.:
+
+* The flags can be combined to form a single command. Example:
 ```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd --download-archive "C:\Users\anon\Desktop\archives\comet_originals_playlist.txt" -i -o "C:\Users\anon\Desktop\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
+yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb -i --merge-output-format mp4 --add-metadata --embed-thumbnail --embed-subs -r 10M --download-archive ".\%(playlist)s\playlist.txt" -o ".\%(playlist)s\%(playlist_index)s - [%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 ```
 
-* Same as the above but as an `.mp4` file.
-```
-youtube-dl https://www.youtube.com/playlist?list=PLAo9RlHR2tDZwddeEyp9nTfpaFB58DrXd --download-archive "C:\Users\anon\Desktop\archives\comet_originals_playlist.txt" -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 -o "C:\Users\anon\Desktop\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
-```
-
-### Downloading all playlists from a channel
-In this example you will create a folder for the channel and all the playlists will be downloaded to their own folders inside the channel folder. An archive file is going to be used to prevent redownloading if `youtube-dl` stops working (such as your computer going to sleep). Due to technical constrains, any video that shows up more than once in different playlists will only be downloaded to the playlist with the first download of that video. If you do not want this behavior, then refer to instructions from [Downloading a playlist
-](##downloading-a-playlist). Generally, videos are not repeated in playlists on Hololivers' channels.
-
-1. Create a folder where all the playlists will be downloaded.
-2. Open cmd.
-3. Run the following `youtube-dl` command, replacing the channel's playlists URL with the playlists URL of your choice. Replace `C:\Users\anon\Desktop\comet\` with the path to the folder you created. The speed is throttled to 1MB per second to prevent the download from hogging all your bandwidth, you can change `-r 1M` accordingly (eg. `-r 50K`, `-r 4.2M`) or remove it entirely to disable the throttling.
-```
-youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A/playlists -r 1M --download-archive "C:\Users\anon\Desktop\comet\archive.txt" -i -o "C:\Users\anon\Desktop\comet\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
-```
-
-* Same as the above but as an `.mp4` file.
-```
-youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A/playlists -r 1M --download-archive "C:\Users\anon\Desktop\comet\archive.txt" -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 -o "C:\Users\anon\Desktop\comet\%(playlist)s\%(playlist_index)s - %(title)s.%(ext)s"
-```
-
-### Downloading a members only video
+### Downloading members only videos
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
-1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from youtube which will be used to authenticate `youtube-dl`.
-2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click get cookies for `Current Site`. Save the cookies to a location of your choice. In this example we will use `C:\Users\anon\Desktop\youtube-cookies.txt`
+1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
+2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
 > Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
-3. Follow the steps from [Downloading a single video](#Downloading a single video) but add `--cookies C:\Users\anon\Desktop\youtube-cookies.txt` at the end of any command. Example command for downloading the video to the current directory
+3. Add `--cookies C:\Path\To\youtube.com_cookies.txt` at the end of any command and replace `C:\Path\To\youtube.com_cookies.txt` with the path to your cookie file. Example:
 ```
-youtube-dl https://www.youtube.com/watch?v=TEoslCqshuQ -i --cookies C:\Users\anon\Desktop\youtube-cookies.txt
+yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
 ```
->You may find that sometimes authentication will fail. This is most likely due to old cookies. Simply repeat step 2 to replace your current cookie file.
+>You may find that sometimes authentication will fail. This is most likely due to old cookies which can be caused by logging out. Simply repeat step 2 to replace your current cookie file.
 
-### Archiving a channel
-In this example you will download every video uploaded by the channel into a single folder. This will not include videos uploaded by other channels that may have been included in playlists of the channel instead. This means you may miss out on collabs such as duet songs. Unlisted videos and members only videos will not be downloaded. The videos downloaded will have file names in the following format `[ChannelName][Upload Date] Video Title (Youtube video id).mkv`. Example: `[anon ch][20201231] anon sings (oqbyL3JRaHo).mkv`
-1. Create a folder where all the videos of the channel will be downloaded.
-2. Open cmd.
-3. Run the following `youtube-dl` command, replacing the channel URL with the channel URL of your choice. Replace `C:\Users\anon\Desktop\comet\` with the path to the folder you created. The speed is throttled to 1MB per second to prevent the download from hogging all your bandwidth, you can change `-r 1M` accordingly (eg. `-r 50K`, `-r 4.2M`) or remove it entirely to disable the throttling. `--add-metadata` will add the video description to the downloaded video's comment property and set the date modified of the video file to the date it was uploaded. `--write-info-json` will create a file with some information that might be useful later on. `--write-thumbnail` will download the image that is used as the thumbnail for the video. `--write-description` will create a file with the video description in it.
-```
-youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A -r 1M --add-metadata --write-info-json --write-thumbnail --write-description --download-archive "C:\Users\anon\Desktop\comet\archive.txt" -i -o "C:\Users\anon\Desktop\comet\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
-```
+### Setting-up a default config
+If you find yourself using the same flags 99% of the time, you can choose to set-up a default config so that you do not need to type the flags you always use.
+1. Go to your appdata
+    - Open the start menu by pressing the ⊞ windows key, type `%APPDATA%` and clicking on the folder.
+2. Make a new folder with the name `yt-dlp`
+3. Create a text file in the folder created with the name `config.txt`
+4. Edit the `config.txt` file with your desired flags. Feel free to refer to this example [config.txt](config.txt) that has commonly-used flags.
+5. Download videos with ease in the future.
 
-* Same as the scenario above but outputs an `.mp4` file.
-```
-youtube-dl https://www.youtube.com/channel/UC5CwaMl1eIgY8h02uZw7u8A -r 1M --add-metadata --write-info-json --write-thumbnail --write-description --download-archive "C:\Users\anon\Desktop\comet\archive.txt" -i -f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4 -o "C:\Users\anon\Desktop\comet\[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s"
-```
+## Downloading entire channels
+There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/dlentirechannel.ps1).
 
-To get a more complete collection of the channel will require some ingenuity on your part. You can download all the playlists on the channel and then run the command for archiving the channel to download all the videos that are not in a playlist on the channel. As long as `youtube-dl` targets the same archive file in `--download-archive <FILE>`, it will not download videos previously listed in the archive file. 
+## Downloading livestreams
+Livestreams can be downloaded as they are airing.
 
-Unlisted videos can be downloaded using the instructions in [Downloading a single video](#downloading-a-single-video). Use `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` as the file name to get the same file name format as the command above.
-
-You can create scheduled tasks to periodically run your archival commands to stay up to date automatically. 
-
-## Downloading a livestream as it is occurring
-Livestreams can be captured and downloaded as they are airing.
+This is useful for no archive livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
 
-## FAQ
+## Troubleshooting/FAQ
+### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
+- Try reopening a new Command Prompt in administrator mode and verify if they work.
+- Make sure you followed the instructions and installed everything correctly.
+- Try adding `.exe` behind the command (eg. `ytarchive.exe` instead of `ytarchive`).
+
 ### How do I get the highest quality video and audio available?
-New versions of youtube-dl will automatically pick the best quality available without any extra command options.
+New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
-### What options do I need to pass to get the highest quality `.mp4`?
-```
--f bestvideo[ext=mp4]+bestaudio[ext=m4a] --merge-output-format mp4
-```
-You can add this after the `-i` on any of the shown commands.
-
-### What difference is there between the highest quality `.mp4` and `.mkv`?
-Using `.mkv` will download `48kHz Opus audio` if it is available while `.mp4` will download `44.1kHZ AAC audio`. Using `.mkv` will allow higher qualities and resolutions above `1080p` while `.mp4` will be limited to `1080p`*. There are only a handful of videos that are above `1080p` and most are short music videos as opposed to long live streams.
-
-*These limitations are due to the streams available from youtube and container type that can contain the streams.
+### The video file is corrupted!
+* There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
+* FFmpeg versions before 3.1.4 do not have this issue.
+* Add `-S "proto,codec:av01:m4a"` to your command and it should fix most issues with broken video playback.
 
 ### How do I do stuff not mentioned here?
 Read the docs.
-* https://github.com/ytdl-org/youtube-dl/blob/master/README.md
+* https://github.com/yt-dlp/yt-dlp/blob/master/README.md
 * https://ffmpeg.org/documentation.html
