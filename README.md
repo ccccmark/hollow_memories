@@ -1,5 +1,5 @@
 # Youtube Archive Tutorial
-This tutorial covers setting up and using `youtube-dl` to download videos, playlists and channels.
+This tutorial covers setting up `youtube-dl` and `ytarchive` to download livestreams, videos, playlists and channels.
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
