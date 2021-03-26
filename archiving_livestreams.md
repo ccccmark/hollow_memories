@@ -31,7 +31,7 @@ setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 
 ## Using ytarchive
 ### Saving a normal stream
-* To make your life easier, you can use this [script](scripts/ytarchive.ps1) and copy it to the directory you wish to save the stream to, then open the file.
+* To make your life easier, you can use this [script](scripts/Windows/ytarchive.ps1) and copy it to the directory you wish to save the stream to, then open the file.
 1. Open Command Prompt.
 2. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
 ```

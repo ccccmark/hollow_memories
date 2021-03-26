@@ -45,8 +45,8 @@ python -m pip install --upgrade yt-dlp
 ## Using yt-dlp
 If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or refer to this [README](https://github.com/yt-dlp/yt-dlp/blob/master/README.md).
 ### Downloading videos
-* You can use [this script to download single videos](scripts/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
-* You can use [this script to download playlists](scripts/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
+* You can use [this script to download single videos](scripts/Windows/dlsinglevid.ps1) which incorporates all the recommended flags. Save the script to the directory where you want to save the video to and run it.
+* You can use [this script to download playlists](scripts/Windows/dlsingleplaylist.ps1) which incorporates all the recommended flags. To update a downloaded playlist, simply run the script again with the same playlist URL.
 
 * This is the basic command to download a video to the current directory
 ```
@@ -121,7 +121,7 @@ If you find yourself using the same flags 99% of the time, you can choose to set
 5. Download videos with ease in the future.
 
 ## Downloading entire channels
-There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/dlentirechannel.ps1).
+There is a script to simplify the process of downloading an entire channel which you can find [here](scripts/Windows/dlentirechannel.ps1).
 
 ## Downloading livestreams
 Livestreams can be downloaded as they are airing.
