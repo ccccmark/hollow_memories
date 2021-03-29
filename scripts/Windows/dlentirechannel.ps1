@@ -22,7 +22,7 @@ if ($confirmation -eq 'y') {
     yt-dlp "https://www.youtube.com/playlist?list=UUMO$URL" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate --cookies "youtube.com_cookies.txt" -N $threads --download-archive "%(uploader)s/archive.log" -o "%(uploader)s/Membership/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 }
 else {
-    yt-dlp "https://www.youtube.com/channel/UC$url" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate -N $threads --download-archive "%(uploader)s/archive.log" -o "%(uploader)s/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
+    yt-dlp "https://www.youtube.com/channel/UC$url" -i --merge-output-format mp4 --match-filter "!is_live" --add-metadata --embed-thumbnail --embed-subs $rate -N $threads --download-archive "archive.log" -o "%(uploader)s/[%(upload_date)s] %(title)s (%(id)s).%(ext)s"
 }
 
 pause
