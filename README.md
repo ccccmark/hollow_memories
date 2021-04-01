@@ -53,8 +53,6 @@ If you wish to learn the CLI commands yourself, use the `yt-dlp -h` command or r
 yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 ```
 
-* The `-i` flag simply ignores errors and continues instead of throwing an error (eg. if the video is privated or deleted).
-
 * The `-o` flag is used to download the video to a different directory or to name the download file. To see a list of all the output placeholders, read [this documentation](https://github.com/ytdl-org/youtube-dl#output-template).
 > You can add `~\` at the start of `-o` as a shortcut to your home directory (eg. C:\Users\anon). Using `.\` will save it to the current directory of the Command Prompt.
 
