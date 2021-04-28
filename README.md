@@ -14,7 +14,7 @@ This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams
 - [Downloading entire channels](#downloading-entire-channels)
 - [Downloading livestreams](#downloading-livestreams)
 - [Content sharing](#content-sharing)
-  - [Using torrents](using-torrents)
+  - [Using torrents](#using-torrents)
 - [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
