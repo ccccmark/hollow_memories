@@ -128,6 +128,29 @@ This is useful for no archive livestreams or scheduled livestreams.
 
 Refer to [this guide](archiving_livestreams.md).
 
+## Content Sharing
+
+### Using Torrents
+
+In case you are new to torrents this arcticle explains how bittorrent works
+https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work
+
+#### Uploading Torrents to Nyaa.si
+
+If you want to share streams as torrents i recommend using nyaa.si to upload them
+nyaa.si is "A BitTorrent community focused on Eastern Asian media including anime, manga, music, and more."
+
+before using it read the rules https://nyaa.si/rules and the help page https://nyaa.si/help
+
+I recommend making an account so you can edit/manage your torrents later
+
+to upload torrents to nyaa.si click the upload button at the top left which wil send you to https://nyaa.si/upload
+
+the rest is pretty self explaining use `Live Action - Raw` as category for normal stream vods
+
+for the Torrent flags `Anonymous` will shows `Anonymous` instead of your username as upload
+`Hidden` is like the unlisted option on youtube
+
 ## Troubleshooting/FAQ
 ### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
 - Try reopening a new Command Prompt in administrator mode and verify if they work.
