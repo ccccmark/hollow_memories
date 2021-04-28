@@ -15,7 +15,7 @@ This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams
 - [Downloading livestreams](#downloading-livestreams)
 - [Content sharing](#content-sharing)
   - [Using torrents](#using-torrents)
-- [HoloTools/HoloStats](#HoloTools/HoloStats)  
+- [HoloTools/HoloStats](#holotoolsholostats)
 - [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
