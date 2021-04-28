@@ -13,6 +13,8 @@ This tutorial covers setting up `youtube-dl` and `ytarchive` to download livestr
   - [Setting-up a default config](#setting-up-a-default-config)
 - [Downloading entire channels](#downloading-entire-channels)
 - [Downloading livestreams](#downloading-livestreams)
+- [Content sharing](#content-sharing)
+  - [Using torrents](using-torrents)
 - [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
