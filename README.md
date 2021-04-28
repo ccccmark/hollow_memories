@@ -15,6 +15,7 @@ This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams
 - [Downloading livestreams](#downloading-livestreams)
 - [Content sharing](#content-sharing)
   - [Using torrents](#using-torrents)
+- [HoloTools/HoloStats](#HoloTools/HoloStats)  
 - [Troubleshooting/FAQ](#troubleshootingfaq)
 
 ## Prerequisites
@@ -152,6 +153,22 @@ the rest is pretty self explaining use `Live Action - Raw` as category for norma
 
 for the Torrent flags `Anonymous` will shows `Anonymous` instead of your username as upload
 `Hidden` is like the unlisted option on youtube
+
+## HoloTools/HoloStats
+
+Holo Tools and HoloStats are amazing to keep track of all the ongoing livestreams in hololive
+
+You can see all the running,upcoming and recently ended streams of all the hololive channels
+https://hololive.jetri.co (HoloTools)
+https://holo.poi.cat (HoloStats)
+
+HoloTools updates thumbnails so if a stream gets unavailable you can see it
+![image](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/holotools.png)
+
+HoloStats doesnt do that this way you can get the thumbnail even when the stream gets deleted
+it also shows how long a stream was
+
+![image](https://raw.githubusercontent.com/Lytexx/hollow_memories/master/assets/holostats.png)
 
 ## Troubleshooting/FAQ
 ### When I run a command in Command Prompt, I get `'xxxx' is not recognized as an internal or external command, operable program or batch file`!
