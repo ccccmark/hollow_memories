@@ -151,8 +151,8 @@ to upload torrents to nyaa.si click the upload button at the top left which wil 
 
 the rest is pretty self explaining use `Live Action - Raw` as category for normal stream vods
 
-for the Torrent flags `Anonymous` will shows `Anonymous` instead of your username as upload
-`Hidden` is like the unlisted option on youtube
+for the Torrent flags `Anonymous` will show `Anonymous` instead of your username as uploader
+`Hidden` is like the unlisted option on youtube only you will be able to see it
 
 ## HoloTools/HoloStats
 
