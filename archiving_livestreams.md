@@ -18,7 +18,7 @@ Follow the guide shown in the [README](README.md#prerequisites)
 ### Installing ytarchive on Windows
 1. Download ytarchive from https://github.com/Kethsar/ytarchive/releases/latest
    - If you get a virus warning on your anti-virus, it's a false-positive. [Read here](https://github.com/Kethsar/ytarchive/issues/9).
-   - You may use the [`.py` version instead](#how-do-i-use-the-py-file-version-of-ytarchive-instead)
+   - Click [here](#how-do-i-use-the-py-file-version-of-ytarchive-instead) if you want to use the .py version instead
 2. Move `ytarchive.exe` to a permanent location (eg. C:\Program Files\ytarchive)
 3. Open Command Prompt in elevated mode
 > Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
@@ -26,7 +26,7 @@ Follow the guide shown in the [README](README.md#prerequisites)
 ```
 setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 ```
->Example: If you were to store `ytarchive.exe` in `C:\Program Files\ytarchive` you would run the command `setx /M PATH "%PATH%;C:\Program Files\youtube-dl"`
+>Example: If you were to store `ytarchive.exe` in `C:\Program Files\ytarchive` you would run the command `setx /M PATH "%PATH%;C:\Program Files\ytarchive"`
 5. Verify that it has installed correctly by opening a new Command Prompt without elevated mode, typing `ytarchive -h` and pressing enter.
 
 ## Using ytarchive
@@ -35,9 +35,9 @@ setx /M PATH "%PATH%;C:\Path\To\ytarchive"
 1. Open Command Prompt.
 2. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
 ```
-cd "C:\Path\To\stream"
+pushd "C:\Path\To\stream"
 ```
->Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
+>Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `pushd "C:\Users\anon\Videos"`
 3. Type `ytarchive` into Command Prompt and pressing enter.
 4. Paste the URL of the stream you wish to save. (eg. `https://www.youtube.com/watch?v=tYnk9EnrnOE`)
 5. If you are saving a stream that has been scheduled but not yet started, it will ask you if you will wait until the start of the livestream. Type `poll` then `15` to check if the stream has started every 15 seconds.
@@ -52,9 +52,9 @@ Make sure you have membership of the channel and are logged into YouTube or it w
 > Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
 2. Change the directory of Command Prompt by modifying the following command, replacing `C:\Path\To\stream` with the folder path you want to save the stream to.
 ```
-cd "C:\Path\To\stream"
+pushd "C:\Path\To\stream"
 ```
->Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `cd "C:\Users\anon\Videos"`
+>Example: If you were to save the stream in `C:\Users\anon\Videos` you would run the command `pushd "C:\Users\anon\Videos"`
 5. Modify the following command by replacing `C:\Path\To\youtube.com_cookies.txt` with the folder path where you are storing the cookie file.
 ```
 ytarchive -c youtube.com_cookies.txt
