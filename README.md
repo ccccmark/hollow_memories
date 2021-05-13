@@ -103,9 +103,9 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb 
 
 ### Downloading members only videos
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
-1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract cookies from your YouTube which will be used to authenticate `ytarchive`.
-2. Click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
-> Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube channel.
+1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract your cookies from YouTube which will be used to authenticate `ytarchive`.
+2. Open Youtube then click on the `cookies.txt` extension in the top right hand corner of the browser and click the `Export ↓` button to save the cookies. Move the file to a location of your choice.
+> Do not share your cookie file with anyone unless you know what you're doing! They can have complete access to your YouTube Account.
 3. Add `--cookies C:\Path\To\youtube.com_cookies.txt` at the end of any command and replace `C:\Path\To\youtube.com_cookies.txt` with the path to your cookie file. Example:
 ```
 yt-dlp https://www.youtube.com/watch?v=_VcYd4EkBR0 --cookies C:\Users\anon\Desktop\youtube.com_cookies.txt
