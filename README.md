@@ -135,7 +135,7 @@ Refer to [this guide](archiving_livestreams.md).
 
 ### Using Torrents
 
-In case you are new to torrents this arcticle explains how bittorrent works
+In case you are new to torrents this article explains how bittorrent works
 https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work
 
 Explaining how to use a bittorrent client would go beyond the scope of this tutorial
