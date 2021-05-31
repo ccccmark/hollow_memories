@@ -138,6 +138,14 @@ Refer to [this guide](archiving_livestreams.md).
 In case you are new to torrents this arcticle explains how bittorrent works
 https://www.howtogeek.com/141257/htg-explains-how-does-bittorrent-work
 
+Explaining how to use a bittorrent client would go beyond the scope of this tutorial
+
+I personally use Qbittorrent https://www.qbittorrent.org/ a very advanced bittorrent client that i would definitively recommend if you plan on torrenting a lot
+
+if you just want something simple you can use picotorrent https://picotorrent.org/
+
+both are free,open-source and very easy to use 
+
 #### Uploading Torrents to Nyaa.si
 
 If you want to share streams as torrents i recommend using nyaa.si to upload them
@@ -158,7 +166,7 @@ for the Torrent flags `Anonymous` will show `Anonymous` instead of your username
 
 Holo Tools and HoloStats are amazing to keep track of all the ongoing livestreams in hololive
 
-You can see all the running,upcoming and recently ended streams of all the hololive channels
+You can see all the running,upcoming and recently ended streams of all hololive channels
 https://hololive.jetri.co (HoloTools)
 https://holo.poi.cat (HoloStats)
 
