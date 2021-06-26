@@ -78,11 +78,11 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 > Using the filename `[%(uploader)s][%(upload_date)s] %(title)s (%(id)s).%(ext)s` is preferred when gathering large amounts of video as it makes the video files more searchable.
 
-- The `-add-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
-
 - The `--write-thumbnail` flag is used to save the thumbnail as an image file and the `--write-description` flag to save the description as a `.description` file.
 
 - The `--embed-thumbnail` flag is used to embed the original thumbnail of the video into the downloaded video file. `--embed-subs` is used to embed subtitles from YouTube into the video file, this is useful for music videos.
+
+- The `-embed-metadata` flag is used to add metadata to the video file which may be useful when using a [video organizer](https://www.filebot.net/) or [media centre](https://www.plex.tv/).
 
 - `--merge-output-format mp4` is used to output an `.mp4` file instead of an `.mkv` file.
 
@@ -125,6 +125,7 @@ yt-dlp https://www.youtube.com/playlist?list=PLZ34fLWik_iAP2AdGLOHthUhAJTrEXqGb 
 ```
 
 ### Downloading members only videos
+
 Make sure you have membership of the channel and are logged into YouTube or it will not work.
 
 1. Install the extension `cookies.txt` [for Firefox](https://addons.mozilla.org/en-US/firefox/addon/cookies-txt/) or [for Chrome](https://chrome.google.com/webstore/detail/get-cookiestxt/bgaddhkoddajcdgocldbbfleckgcbcid). This will let us extract your cookies from YouTube which will be used to authenticate `ytarchive`.
