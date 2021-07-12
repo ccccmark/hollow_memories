@@ -33,7 +33,7 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; `
   iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
 
-3. Verify chocolatey has instealled by running the command then `choco -?`.
+3. Restart PowerShell, then verify chocolatey has been installed by running the command `choco -?`.
 
 ### Installing Python and FFmpeg using chocolatey
 
@@ -43,19 +43,19 @@ Set-ExecutionPolicy Bypass -Scope Process -Force; `
 choco install -y python ffmpeg
 ```
 
-2. Verify both programs have been installed by typing `python --version` and `ffmpeg -version`
+2. Restart PowerShell, then verify both programs have been installed by typing `python --version` and `ffmpeg -version`
 
 ### Installing yt-dlp
 
-1. Open Command Prompt in elevated mode
-    - Open the start menu by pressing the ⊞ windows key, type cmd, right click `Command Prompt` and clicking `Run as administrator`.
+1. Open PowerShell or CMD whatever you prefer
+
 2. Run the following command by pasting it in(CTRL+V) and pressing enter.
 
 ```powershell
 python -m pip install --upgrade yt-dlp
 ```
 
-3. Verify that yt-dlp has been installed by typing `yt-dlp --version`
+3. Restart CMD/PowerShell, then verify that yt-dlp has been installed by typing `yt-dlp --version`
 
 ## Using yt-dlp
 
