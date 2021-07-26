@@ -223,11 +223,12 @@ it also shows how long a stream was
 
 New versions of yt-dlp will automatically pick the best quality available without any extra command options.
 
-### The video file is corrupted!
+### I get a "Conversion failed!" error from FFmpeg
 
-- There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
+- There is an issue with newer FFmpeg releases when there is a different protocol for audio and video. (dash vp9+https m4a/opus)
 - FFmpeg versions before 3.1.4 do not have this issue.
-- Add `-S "proto,codec:av01:m4a"` to your command and it should fix most issues with broken video playback.
+- `-S quality,res,fps,proto,codec:vp9.2` will prefer https over dash
+so it will not download the vp9 version
 
 ### How do I do stuff not mentioned here?
 
