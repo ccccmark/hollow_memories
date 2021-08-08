@@ -185,12 +185,13 @@ If you want to share streams as torrents i recommend using nyaa.si to upload the
 nyaa.si is "A BitTorrent community focused on Eastern Asian media including anime, manga, music, and more."
 
 before using it read the rules <https://nyaa.si/rules> and the help page <https://nyaa.si/help>
-
 I recommend making an account so you can edit/manage your torrents later
-
 to upload torrents to nyaa.si click the upload button at the top left which wil send you to <https://nyaa.si/upload>
 
-the rest is pretty self explaining use `Live Action - Raw` as category for normal stream vods
+the rest should be pretty self explaining, the search on nyaa is very specific so use a proper title
+as example you could use `hololive` at the beginning and `(VideoID)` at the end like i do
+
+as Category you can use whatever you want since there is none that fits vtuber content, i usually use `Live Action - Raw`
 
 for the Torrent flags `Anonymous` will show `Anonymous` instead of your username as uploader
 `Hidden` is like the unlisted option on youtube only you will be able to see it
