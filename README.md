@@ -1,24 +1,24 @@
-# Youtube Archive Tutorial
+# Tutorial de archivado de YouTube
 
-This tutorial covers setting up `yt-dlp` and `ytarchive` to download livestreams, videos, playlists and channels.
+Este tutorial cubre todo para configurar `yt-dlp` y `ytarchive` para descargar transmisiones en vivo, vídeos, playlists y canales.
 
-## Table of Contents
+## Tabla de contenidos
 
-- [Prerequisites](#prerequisites)
-  - [Installing chocolatey on Windows](#installing-chocolatey-on-windows)
-  - [Installing Python and FFmpeg using chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
-  - [Installing yt-dlp](#installing-yt-dlp)
-- [Using yt-dlp](#using-yt-dlp)
-  - [Downloading videos](#downloading-videos)
-  - [Downloading playlists](#downloading-playlists)
-  - [Downloading members only videos](#downloading-members-only-videos)
-  - [Setting-up a default config](#setting-up-a-default-config)
-- [Downloading entire channels](#downloading-entire-channels)
-- [Downloading livestreams](#downloading-livestreams)
-- [Content sharing](#content-sharing)
-  - [Using torrents](#using-torrents)
+- [Prerequisitos](#prerequisites)
+  - [Instalar chocolatey en Windows](#installing-chocolatey-on-windows)
+  - [Instalar Python y FFmpeg usando chocolatey](#installing-python-and-ffmpeg-using-chocolatey)
+  - [Instalar yt-dlp](#installing-yt-dlp)
+- [Usar yt-dlp](#using-yt-dlp)
+  - [Descargar videos](#downloading-videos)
+  - [Descargar playlists](#downloading-playlists)
+  - [Descargar videos sólo para miembros](#downloading-members-only-videos)
+  - [Configurar un ajuste por defecto](#setting-up-a-default-config)
+- [Descargar todo un canal](#downloading-entire-channels)
+- [Descargar transmisiones en vivo](#downloading-livestreams)
+- [Compartir contenido](#content-sharing)
+  - [Usar torrents](#using-torrents)
 - [HoloTools/HoloStats](#holotoolsholostats)
-- [Troubleshooting/FAQ](#troubleshootingfaq)
+- [Solución de problemas/Preguntas frecuentes](#troubleshootingfaq)
 
 ## Prerequisites
 
