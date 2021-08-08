@@ -94,7 +94,7 @@ yt-dlp https://www.youtube.com/watch?v=P8OjkcLzYCM
 
 - The `-S` flag is used to sort video and audio formats to use from first to last order. It is has a lot of options that you can read about [here](https://github.com/yt-dlp/yt-dlp#sorting-formats).
 
-> It is recommended to use `-S "proto,codec:av01:m4a"` as it fixes issues with broken video downloading and playback, [see here](#the-video-file-is-corrupted)
+> It is recommended to use `-S quality,res,fps,proto,codec:vp9.2` as it fixes issues with broken video downloading and playback, [see here](#i-get-a-conversion-failed-error-from-ffmpeg)
 
 - The flags can be combined to form a single command. Example:
 
@@ -225,10 +225,9 @@ New versions of yt-dlp will automatically pick the best quality available withou
 
 ### I get a "Conversion failed!" error from FFmpeg
 
-- There is an issue with newer FFmpeg releases when there is a different protocol for audio and video. (dash vp9+https m4a/opus)
+- There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
 - FFmpeg versions before 3.1.4 do not have this issue.
-- `-S quality,res,fps,proto,codec:vp9.2` will prefer https over dash
-so it will not download the vp9 version
+- you can fix this by using `-S quality,res,fps,proto,codec:vp9.2` which will prefer https+avc over dash+vp9
 
 ### How do I do stuff not mentioned here?
 
