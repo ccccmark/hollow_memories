@@ -229,6 +229,7 @@ New versions of yt-dlp will automatically pick the best quality available withou
 - There is an issue with newer FFmpeg releases when there is a different protocol for audio and video.
 - FFmpeg versions before 3.1.4 do not have this issue.
 - you can fix this by using `-S quality,res,fps,proto,codec:vp9.2` which will prefer https+avc over dash+vp9
+  or use `--extractor-args "youtube:skip=dash"` to completly ignore dash formats
 
 ### How do I do stuff not mentioned here?
 
